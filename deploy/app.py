@@ -20,6 +20,24 @@ def lookup_birthday(csv_file_path):
                 age = datetime.now().year - birth_year  
                 birthdays.append((row['fullName'], age))  
         return birthdays if len(birthdays) > 0 else None  
+    
+def lookup_merkeday(csv_file_path):
+    today = datetime.today().strftime('%d/%m')  
+    merkedag = []  
+    with open(csv_file_path, newline='', encoding='utf-8-sig') as csvfile:  
+        reader = csv.DictReader(csvfile)  
+        for row in reader:  
+            if row['date'] == today:  
+                merkedag.append((row['Merkedag']))  
+        return merkedag if len(merkedag) > 0 else None
+    
+def lookup_sitat(csv_file_path):
+    today = datetime.today().strftime('%d/%m')  
+    sitat = []  
+    with open(csv_file_path, newline='', encoding='utf-8-sig') as csvfile:  
+        reader = csv.DictReader(csvfile)  
+        sitat = reader.sample(1)
+        return sitat if len(sitat) > 0 else None
 
 @app.get("/")  
 def read_root():  
@@ -32,7 +50,7 @@ def index(request: Request):
 
 @app.get("/merkedag")  
 def index(request: Request):
-    merkedag = 'Skolebolledagen'  
+    merkedag = lookup_merkeday(csv_file_path)  
     return merkedag if merkedag else "Ingen merkedag idag"
 
 @app.get("/sitat")  
