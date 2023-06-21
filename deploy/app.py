@@ -30,5 +30,15 @@ def index(request: Request):
     birthdays = lookup_birthday(csv_file_path)  
     return birthdays if birthdays else "Ingen bursdager idag"
 
+@app.get("/merkedag")  
+def index(request: Request):
+    merkedag = 'Skolebolledagen'  
+    return merkedag if merkedag else "Ingen merkedag idag"
+
+@app.get("/sitat")  
+def index(request: Request):
+    sitat = 'Ipso facto'
+    return sitat if sitat else "Ingen sitat idag"
+
 if __name__ == "__main__":  
-    uvicorn.run(app, host="0.0.0.0", port=8001)  
+    uvicorn.run(app, host="0.0.0.0", port=8082)  
