@@ -22,13 +22,13 @@ def lookup_birthday(csv_file_path):
         return birthdays if len(birthdays) > 0 else None  
     
 def lookup_merkeday(csv_file_path):
-    today = datetime.today().strftime('%d/%m')  
+    today = datetime.today().strftime('%d/%m')
     merkedag = []  
     with open(csv_file_path, newline='', encoding='utf-8-sig') as csvfile:  
-        reader = csv.DictReader(csvfile)  
-        for row in reader:  
-            if row['date'] == today:  
-                merkedag.append((row['Merkedag']))  
+        reader = csv.DictReader(csvfile, delimiter=';')  
+        for row in reader: 
+            if row['dato'] == today:  
+                merkedag.append((row['merkedag'])) 
         return merkedag if len(merkedag) > 0 else None
     
 def lookup_sitat(csv_file_path):
@@ -59,4 +59,4 @@ def index(request: Request):
     return sitat if sitat else "Ingen sitat idag"
 
 if __name__ == "__main__":  
-    uvicorn.run(app, host="0.0.0.0", port=8082)  
+    uvicorn.run(app, host="0.0.0.0", port=8080)
