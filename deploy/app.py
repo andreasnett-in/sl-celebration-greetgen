@@ -7,7 +7,9 @@ import csv
 from datetime import datetime  
   
 app = FastAPI()
-csv_file_path = 'birthdays.csv'
+bursdag_file_path = 'birthdays.csv'
+merkedag_file_path = 'merkedager.csv'
+sitat_file_path = 'sitater.csv'
 
 def lookup_birthday(csv_file_path):  
     today = datetime.today().strftime('%d/%m')  
@@ -45,12 +47,12 @@ def read_root():
   
 @app.get("/bursdag")  
 def index(request: Request):
-    birthdays = lookup_birthday(csv_file_path)  
+    birthdays = lookup_birthday(bursdag_file_path)  
     return birthdays if birthdays else "Ingen bursdager idag"
 
 @app.get("/merkedag")  
 def index(request: Request):
-    merkedag = lookup_merkeday(csv_file_path)  
+    merkedag = lookup_merkeday(merkedag_file_path)  
     return merkedag if merkedag else "Ingen merkedag idag"
 
 @app.get("/sitat")  
