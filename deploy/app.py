@@ -10,7 +10,7 @@ app = FastAPI()
 bursdag_file_path = 'birthdays.csv'
 merkedag_file_path = 'merkedager.csv'
 sitat_file_path = 'sitater.csv'
-fil_lokasjon = "/site/files/"
+fil_lokasjon = "/home/site/files/"
 def lookup_birthday(csv_file_path):  
     today = datetime.today().strftime('%d/%m')  
     birthdays = []  
